@@ -14,7 +14,9 @@ def install_requirements() -> None:
         from pip._internal import main as pipmain
     pipmain(['install', "-q", "pypdf", "pandas", "openpyxl"]) # Installing pypdf and pandas
 
-def create_metadata(namesOfFiles): # creates a func to use externally
+def create_metadata(namesOfFiles = '') -> None: # creates a func to use externally
+    while namesOfFiles == '':
+        namesOfFiles = input("Enter name of PDF files in current directory: ")
     import os
     try:
         from pypdf import PdfReader # Imports pyPDF library
