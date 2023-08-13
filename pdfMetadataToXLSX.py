@@ -15,7 +15,7 @@ def install_requirements() -> None:
     pipmain(['install', "-q", "pypdf", "pandas", "openpyxl"]) # Installing pypdf and pandas
 
 def create_metadata(namesOfFiles = '') -> None: # creates a func to use externally
-    while namesOfFiles == '':
+    while namesOfFiles == '' or namesOfFiles == " ": # If function calls without giving parameters
         namesOfFiles = input("Enter name of PDF files in current directory: ")
     import os
     try:
@@ -36,11 +36,11 @@ def create_metadata(namesOfFiles = '') -> None: # creates a func to use external
         try:
             readPDF = PdfReader(file) # reads pdf file
         except FileNotFoundError:
-            print('File not founded, skipping. (Spaces are not allowed)')
+            print('File not founded, skipping. (Spaces are not allowed)') # if file with entered mode is not found, skips that file
             continue
         metadataFileName = file[:len(file)-4:] + '_metadata.xlsx' # name for the new metadata .xlsx file
 
-        pd.DataFrame.from_dict([dict(readPDF.metadata)]).to_excel(metadataFileName)
+        pd.DataFrame.from_dict([dict(readPDF.metadata)]).to_excel(metadataFileName) # Writing Excel table
 
         print("DONE\nFile stored in " + dir_path + "\\" + metadataFileName)
 if __name__ == "__main__": # main script for launching directly
