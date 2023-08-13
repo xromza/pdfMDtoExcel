@@ -13,3 +13,7 @@ This is simple script, wirtten on python, that reads .pdf file and store its met
   ```
   py pdfMetadataToXLSX.py
   ```
+  or (for Python lower than 3.11)
+  ```
+  python pdfMetadataToXLSX.py
+  ```
