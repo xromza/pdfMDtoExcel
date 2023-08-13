@@ -15,7 +15,7 @@ def install_requirements() -> None:
     pipmain(['install', "-q", "pypdf", "pandas", "openpyxl"]) # Installing pypdf and pandas
 
 def create_metadata(namesOfFiles = '') -> None: # creates a func to use externally
-    while namesOfFiles == '' or namesOfFiles == " ": # If function calls without giving parameters
+    while namesOfFiles == '' or namesOfFiles == " ": # If function called without giving parameters
         namesOfFiles = input("Enter name of PDF files in current directory: ")
     import os
     try:
@@ -25,7 +25,7 @@ def create_metadata(namesOfFiles = '') -> None: # creates a func to use external
     except ImportError: # Install required library if it missing
         install_requirements()
         from pypdf import PdfReader # Imports pyPDF library again
-    for file in namesOfFiles.split(','): # Multiply .pdf
+    for file in namesOfFiles.split(','): # Multiple .pdf
         file = ''.join(['' if (x == " ") else x for x in file]) # Delete spaces
         if ''.join(file)[-4::] != '.pdf': # If name of file doesn't content ".pdf"
             file += '.pdf' # add ".pdf" to user input
@@ -36,7 +36,7 @@ def create_metadata(namesOfFiles = '') -> None: # creates a func to use external
         try:
             readPDF = PdfReader(file) # reads pdf file
         except FileNotFoundError:
-            print('File not founded, skipping. (Spaces are not allowed)') # if file with entered mode is not found, skips that file
+            print('File not founded, skipping. (Spaces are not allowed)') # if file with entered name is not found, skips that file
             continue
         metadataFileName = file[:len(file)-4:] + '_metadata.xlsx' # name for the new metadata .xlsx file
 
