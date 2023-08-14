@@ -25,6 +25,7 @@ def create_metadata(namesOfFiles = '') -> None: # creates a func to use external
     except ImportError: # Install required library if it missing
         install_requirements()
         from pypdf import PdfReader # Imports pyPDF library again
+        import pandas as pd # Imports pandas library again
     for file in namesOfFiles.split(','): # Multiple .pdf
         file = ''.join(['' if (x == " ") else x for x in file]) # Delete spaces
         if ''.join(file)[-4::] != '.pdf': # If name of file doesn't content ".pdf"
